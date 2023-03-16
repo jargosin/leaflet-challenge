@@ -16,7 +16,7 @@ function markerSize(magnitude) {
     return magnitude * 10000;
 };
 
-// Create function for marker color
+// Create function for marker color spectrum
 function markerColor(depth) {
     if (depth < 10) return "#60ff2f";
     else if (depth < 30) return "#b6ff2f";
@@ -71,7 +71,7 @@ function createMap(earthquakes) {
         access_token: 'pk.eyJ1IjoibWljaGVsbGVjYXJ2YWxobyIsImEiOiJjbGUwbXBxYzMxY3RzM3ZueTN6ZnRicGJxIn0.rtETj8AmHXnbIsQ-RguXFA'
       });
 
-      // Create map with layers to display
+      // Create map with layers to display grayscale map and earthquake points
       var myMap = L.map("map", {
         center: [37.09, -95.71],
         zoom: 5,
@@ -85,7 +85,7 @@ function createMap(earthquakes) {
         depth = [-10, 10, 30, 50, 70, 90];
         div.innerHTML += "<h3 style='text-align: center'>Depth</h3>"
 
-        // Loop through value ranges to for each
+        // Loop through depth ranges for legend
         for (var i = 0; i < depth.length; i++) {
             div.innerHTML +=
             '<i style="background:' + markerColor(depth[i] + 1) + '"></i> ' + depth[i] + (depth[i + 1] ? '&ndash;' + depth[i + 1] + '<br>' : '+');
